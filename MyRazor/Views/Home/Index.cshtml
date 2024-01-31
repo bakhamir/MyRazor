@@ -1,16 +1,29 @@
-﻿@Html.Display("qwerty", "qwqwqwqw")
-@Html.ActionLink("MyLink", "Index2", "");
+﻿@model IEnumerable<MyRazor.Models.Photo>
 
-<a href="www.google.com">MyLink2</a>
-
-@ViewData["param1"]
-
-<form >
-
-</form>
-@using(Html.BeginForm("MyPost", "Home", FormMethod.Post))
-{
-    @Html.TextBox("id", 1)
-    @Html.TextBox("name", "name")
-    <input type="submit" value="Send"/>
+@{
+    ViewData["Title"] = "Index";
 }
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
